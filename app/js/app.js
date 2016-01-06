@@ -1,6 +1,11 @@
 (function(){
-'use strict';
-angular.module('readingList', []);
+  'use strict';
+  var myApp = angular.module('readingList', []);
+
+  myApp.controller('ReadingListController', function(){
+    this.books  = books
+    this.genres = genres
+  });
 
   var genres = [ 'fable', 'fantasy', 'fiction', 'folklore', 'horror', 'humor', 'legend', 'metafiction', 'mystery', 'mythology', 'non-fiction', 'poetry' ];
 
