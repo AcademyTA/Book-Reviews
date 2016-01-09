@@ -1,16 +1,21 @@
 (function(){
   'use strict';
+
   angular.module('readingList', [])
 
   .controller('ReadingListController', function(){
-    this.books  = books
-    this.genres = genres
+    this.books = books;
+    this.genres = genres;
+    this.showForm = false;
   })
 
   .directive('bookGenres', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/book-genres.html'
+      templateUrl: 'partials/book-genres.html',
+      scope: {
+        genres: '='
+      }
     }
   })
 
@@ -28,11 +33,22 @@
       templateUrl: 'partials/review-form.html',
       replace: true,
       controller: function(){
-        this.showForm = false;
+        this.book = {genres:{}};
+
+        this.addReview = function(form){
+          books.push(this.book);
+          this.book = {genres:{}};
+          form.$setPristine();
+        }
       },
-      controllerAs: 'reviewFromCtrl'
+      controllerAs: 'reviewFormCtrl',
+      scope: {
+        books: '=',
+        genres: '='
+      }
     }
   });
+
 
   var genres = [ 'fable', 'fantasy', 'fiction', 'folklore', 'horror', 'humor', 'legend', 'metafiction', 'mystery', 'mythology', 'non-fiction', 'poetry' ];
 
